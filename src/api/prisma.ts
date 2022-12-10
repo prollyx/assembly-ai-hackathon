@@ -16,7 +16,7 @@ export const getAllUsers = async () => {
     return users;
   } catch (e) {
     console.log(e);
-    
+
     throw new Error("e");
   }
 };
@@ -37,6 +37,19 @@ export async function addUser(
 export async function getUser(userId: string): Promise<User> {
   try {
     const user = await prisma.user.findUniqueOrThrow({ where: { id: userId } });
+
+    return user;
+  } catch (e) {
+    throw new Error("user not found");
+  }
+}
+
+/** get user */
+export async function getUserFromEmail(email?: string): Promise<User | null> {
+  try {
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { email: email },
+    });
 
     return user;
   } catch (e) {
