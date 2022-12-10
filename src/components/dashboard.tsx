@@ -2,7 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { PageLayout } from "../components/page-layout";
 
-const DashboardPage = () => {
+const Dashboard = () => {
   const fetcher = (url: string) =>
     fetch(url)
       .then((res) => res.json())
@@ -21,4 +21,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default Dashboard;

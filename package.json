@@ -14,7 +14,7 @@
     "generate": "npx prisma generate"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "^1.9.2",
+    "@auth0/nextjs-auth0": "^2.0.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@microsoft/fetch-event-source": "^2.0.1",

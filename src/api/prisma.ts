@@ -44,6 +44,19 @@ export async function getUser(userId: string): Promise<User> {
   }
 }
 
+/** get user */
+export async function getUserFromEmail(email?: string): Promise<User | null> {
+  try {
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { email: email },
+    });
+
+    return user;
+  } catch (e) {
+    throw new Error("user not found");
+  }
+}
+
 /** add Project */
 export async function addProject(
   input: Prisma.ProjectCreateInput
