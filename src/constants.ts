@@ -11,8 +11,8 @@ import {
 import { TemplateType } from "./types";
 
 export const MaxExternalUserSubmissions = 1;
-export const GLOBAL_TEMPERATURE = 0.3;
-export const GLOBAL_MAX_TOKENS = 2600;
+export const GLOBAL_TEMPERATURE = 0.7;
+export const GLOBAL_MAX_TOKENS = 3000;
 
 export const AutoFillGeneralFieldValues: GenerateTestCasesArgs = {
   name: "Add Contact to phone book",

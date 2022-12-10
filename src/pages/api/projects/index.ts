@@ -1,17 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  addProject,
-  getAllUserProjectsFromEmail,
-} from "../../../api/prisma-queries";
+
 import { HTTPMethod } from "../../../types";
 import { getSession } from "@auth0/nextjs-auth0";
+import {addProject, getAllUserProjectsFromEmail} from "../../../api/database/projects";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const session = await getSession(req, res);
-  console.log("session ", session);
 
   if (req.method === HTTPMethod.POST) {
     const data = req.body.arg;

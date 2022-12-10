@@ -5,10 +5,13 @@ import EmptyProjectImage from '../create-new-project-page/empty-project'
 import {ProjectCard} from '../project-card'
 import AddIcon from '@mui/icons-material/Add';
 import Link from 'next/link'
+import {useProjectContext} from '../../../context/project.provider'
 
 const ViewAllProjectsPage = () => {
 
     const {data, isLoading, error} = useGetAllProjects()
+
+    const {setActiveProject} = useProjectContext()
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -32,7 +35,7 @@ const ViewAllProjectsPage = () => {
         <div className='main-content project-card-wrapper flex'>
             {
             hasProjects ? 
-            data.map((project: Project) => <ProjectCard key={project.id} {...project}/>):   <div className=''>
+            data.map((project: Project) => <ProjectCard onClick={() => setActiveProject(project)} key={project.id} {...project}/>):   <div className=''>
             <EmptyProjectImage />
             </div>
             }

@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import logo from "../../../assets/logo.png";
+import {useProjectContext} from "../../context/project.provider";
 import { DrawerLink } from "./drawer-link";
 
 const Drawer: FC = () => {
-  const { pathname } = useRouter();
+  const {activeProject} = useProjectContext();
+
+  const activeProjectId = activeProject?.id
 
   return (
     <div className="drawer">
@@ -20,33 +23,25 @@ const Drawer: FC = () => {
         <div className="my-20">
           <p className="drawer-section-title">Projects</p>
           <DrawerLink
-            currentPath={pathname}
             href="/projects"
             label="View All Projects"
-            path="/projects"
           />
           <DrawerLink
-            currentPath={pathname}
             href="/projects/create"
             label="Create Project"
-            path="/projects/create"
           />
         </div>
 
         <div className="my-20">
           <p className="drawer-section-title">Features</p>
           <DrawerLink
-            currentPath={pathname}
-            href="/projects"
+            href={`/projects/${activeProjectId}`}
             label="View All Features"
-            path="/projects"
           />
-          <DrawerLink
-            currentPath={pathname}
-            href="/projects/create"
+          {/* <DrawerLink
+            href={`/projects/${activeProjectId}/features/create`}
             label="Create Feature"
-            path="/projects/create"
-          />
+          /> */}
         </div>
         </div>
       
