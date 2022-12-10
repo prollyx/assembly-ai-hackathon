@@ -1,5 +1,5 @@
-export enum Rating {
-  GOOD = "GOOD",
-  BAD = "BAD",
-  NOT_RATED = "NOT_RATED",
+export interface projectInput {
+  name: string;
+  description: string;
+  userId: string;
 }

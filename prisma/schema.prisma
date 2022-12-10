@@ -17,18 +17,18 @@ enum Rating {
 }
 
 model User {
-  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
   firstname  String
   lastname   String
-  email      String     @unique
-  created_at DateTime   @default(now())
+  email      String      @unique
+  created_at DateTime    @default(now())
   // organization   Organization? @relation(fields: [organizationId], references: [id])
   // organizationId String?    @db.ObjectId
-  responses  Response[]
+  responses  Responses[]
   projects   Project[]
 }
 
-model Response {
+model Responses {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   prompt    String
   response  String
@@ -52,19 +52,19 @@ model Project {
   name        String
   description String
   features    Feature[]
-  User        User?     @relation(fields: [userId], references: [id])
+  user        User?     @relation(fields: [userId], references: [id])
   userId      String?   @db.ObjectId
 }
 
 model Feature {
-  id                  String     @id @default(auto()) @map("_id") @db.ObjectId
+  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
   name                String
   description         String
   requirements        String?
   user_stories        String?
   test_cases          String?
   acceptance_criteria String?
-  Project             Project?   @relation(fields: [projectId], references: [id])
-  projectId           String?    @db.ObjectId
-  responses           Response[]
+  Project             Project?    @relation(fields: [projectId], references: [id])
+  projectId           String?     @db.ObjectId
+  responses           Responses[]
 }
