@@ -121,65 +121,6 @@ export async function getAllProjects(): Promise<Project[]> {
   }
 }
 
-/** get project features */
-export async function addFeature(
-  input: Prisma.FeatureCreateInput
-): Promise<Feature> {
-  try {
-    const feature = await prisma.feature.create({
-      data: input,
-    });
-
-    return feature;
-  } catch (e) {
-    throw new Error("feature not added");
-  }
-}
-
-export async function updateFeature(
-  input: Prisma.FeatureCreateInput
-): Promise<Feature> {
-  try {
-    const feature = await prisma.feature.update({
-      where: { id: input.id },
-      data: input,
-    });
-
-    return feature;
-  } catch (e) {
-    throw new Error("feature not updated");
-  }
-}
-
-export async function deleteFeature(
-  input: Prisma.FeatureCreateInput
-): Promise<Feature> {
-  try {
-    const feature = await prisma.feature.delete({
-      where: { id: input.id },
-    });
-
-    return feature;
-  } catch (e) {
-    throw new Error("feature not deleted");
-  }
-}
-
-/** get project features */
-export async function getProjectFeatures(
-  projectId: string
-): Promise<Feature[]> {
-  try {
-    const project = await prisma.feature.findMany({
-      where: { projectId: projectId },
-    });
-
-    return project;
-  } catch (e) {
-    throw new Error("projects not found");
-  }
-}
-
 export async function addResponse(
   input: Prisma.ResponsesCreateInput
 ): Promise<Responses> {

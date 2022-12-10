@@ -1,5 +1,6 @@
 import {PageLayout} from "../../../components/page-layout";
 import { useRouter } from 'next/router'
+import {FeaturesPage} from "../../../components/features/features-page";
 
 
 export default function ProjectPage() {
@@ -7,10 +8,13 @@ export default function ProjectPage() {
   const router = useRouter()
   const { id } = router.query
 
-  return (
-    <PageLayout>
-      <h1>{id}</h1>
-        <h2>Project Page</h2>
+  if (id) {
+    return (
+      <PageLayout>
+        <FeaturesPage projectId={id as string} />
     </PageLayout>
   );
+
+  return null
+}
 }

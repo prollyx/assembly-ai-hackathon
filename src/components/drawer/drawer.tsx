@@ -15,6 +15,8 @@ const Drawer: FC = () => {
         <Image src={logo} alt="logo" height={30} />
       </div>
       <div className="flex-1 flex flex-col justify-between">
+        <div>
+
         <div className="my-20">
           <p className="drawer-section-title">Projects</p>
           <DrawerLink
@@ -30,6 +32,24 @@ const Drawer: FC = () => {
             path="/projects/create"
           />
         </div>
+
+        <div className="my-20">
+          <p className="drawer-section-title">Features</p>
+          <DrawerLink
+            currentPath={pathname}
+            href="/projects"
+            label="View All Features"
+            path="/projects"
+          />
+          <DrawerLink
+            currentPath={pathname}
+            href="/projects/create"
+            label="Create Feature"
+            path="/projects/create"
+          />
+        </div>
+        </div>
+      
 
         <div className="mb-10">
           <span className="flex text-red-700 hover:text-red-500 font-bold  cursor-pointer">
