@@ -6,7 +6,6 @@ import logo from '../../../assets/logo.png'
 import {DrawerLink} from './drawer-link';
 
 const Drawer: FC = () => {
-
     const {pathname} = useRouter()
 
     return (
