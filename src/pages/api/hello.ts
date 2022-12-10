@@ -6,21 +6,15 @@ type Data = {
   name: string;
 };
 
-export default function handler(res: NextApiResponse<User[] | Data>) {
-  const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<User[] | Data>
+) {
   async function main() {
     // Connect the client
     await prisma.$connect();
-    // ... you will write your Prisma Client queries here
-
-    await prisma.user.create({
-      data: {
-        firstname: "John",
-        lastname: "Doe 3",
-        email: "John3@gmail.com",
-      },
-    });
   }
 
   main()
