@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.html,
+body {
+  height: 100vh;
+}
+
+/* COMMON */
+
+p {
+  @apply text-gray-800;
+}
+
+h1 {
+  @apply text-3xl font-bold text-gray-800;
+}
+
+/* DRAWER */
+.drawer {
+  @apply bg-gray-100 flex flex-col h-screen overflow-hidden w-64 p-6;
+}
+
+.drawer-section-title {
+  @apply text-gray-800 text-sm uppercase mb-2;
+}
+
+.drawer-link {
+  @apply flex items-center my-2 rounded-lg text-gray-800 hover:text-gray-600 cursor-pointer text-sm;
+}
+
+.drawer-link-active {
+  @apply text-teal-800 font-bold;
+}
+
+/* PAGE LAYOUT */
+
+.page-container {
+  @apply flex flex-row flex-1 h-screen overflow-hidden;
+}
+
+.page-layout-main-containter {
+  @apply flex flex-col flex-1 overflow-hidden m-12 max-w-4xl;
+}
+
+
+
+@media only screen and (max-width: 640px) {
+  .html,
+  body {
+    margin: 24px;
+  }
+}

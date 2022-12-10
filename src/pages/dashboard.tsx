@@ -1,5 +1,6 @@
 import React from "react";
 import useSWR from "swr";
+import {PageLayout} from "../components/page-layout";
 
 const DashboardPage = () => {
   const fetcher = (url: string) =>
@@ -14,10 +15,9 @@ const DashboardPage = () => {
   if (error) return <div>failed to load</div>;
 
   return (
-    <>
-      <h1>dashboard</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </>
+   <PageLayout>
+      <h1>Dashboard</h1>
+   </PageLayout>
   );
 };
 
