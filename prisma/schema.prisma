@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("NEXT_PUBLIC_DATABASE_URL")
+}
+
+enum Rating {
+  GOOD
+  BAD
+  NOT_RATED
+}
+
+model User {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  firstname      String
+  lastname       String
+  email          String        @unique
+  created_at     DateTime      @default(now())
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?       @db.ObjectId
+  responses      Response[]
+}
+
+model Response {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  prompt   String
+  // template 
+  response String
+  rated    Rating?
+  userId   String  @db.ObjectId
+  user     User    @relation(fields: [userId], references: [id])
+}
+
+model Organization {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  seats       Int
+  users       User[]
+}
