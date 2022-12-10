@@ -10,7 +10,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ description, id, name}) => {
     return (
         <div className='project-card'>
             <h2 className='mb-2'>{name}</h2>
-            <p>{description}</p>
+            <p className='project-card-description'>{description}</p>
         </div>
     )
 }

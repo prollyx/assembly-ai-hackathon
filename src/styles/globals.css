@@ -18,7 +18,7 @@ h1 {
 }
 
 h2 {
-  @apply text-2xl font-bold text-gray-800;
+  @apply text-xl font-bold text-gray-800;
 }
 
 input {
@@ -66,7 +66,11 @@ button, button[type="submit"] {
 
 /* PROJECTS PAGE */
 .project-card {
-  @apply bg-white rounded-lg p-6 mb-6 cursor-pointer hover:outline-2 hover:outline-gray-300 hover:outline max-h-52 overflow-clip;
+  @apply bg-white rounded-lg p-6 mb-6 cursor-pointer hover:outline-2 hover:outline-gray-300 hover:outline h-56;
+}
+
+.project-card-description {
+  @apply overflow-hidden max-h-36
 }
 
 .project-card-wrapper {
