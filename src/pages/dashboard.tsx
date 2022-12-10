@@ -7,12 +7,16 @@ const DashboardPage = () => {
       .then((res) => res.json())
       .catch((e) => console.log(e));
 
-  const { data, error } = useSWR("/api/sample", fetcher);
+  const { data, error, isLoading } = useSWR("/api/sample", fetcher);
+
+  if (isLoading) return <div>loading...</div>;
+
+  if (error) return <div>failed to load</div>;
 
   return (
     <>
       <h1>dashboard</h1>
-      <pre>{JSON.stringify({ data, error, message: "Hello" }, null, 2)}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </>
   );
 };
