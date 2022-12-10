@@ -4,8 +4,10 @@ import React, { createContext, FC, PropsWithChildren, useState } from "react";
 
 interface ToastContext {
   showSuccessNotification: (message: string) => void;
+  showErrorNotification: (message: string) => void;
 }
 
+// @ts-ignore
 const toastContext = createContext<ToastContext>(undefined);
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -20,31 +22,47 @@ interface ToastConfig {
   message: string;
 }
 
-
 const NotificationProvider: FC<PropsWithChildren> = ({ children }) => {
   const [open, setOpen] = useState(false);
 
-  const [toastConfig, setToastConfig] = useState<ToastConfig>({});
+  const [toastConfig, setToastConfig] = useState<ToastConfig>();
 
   const showSuccessNotification = (message: string) => {
-    setOpen(true)
+    setOpen(true);
     setToastConfig(() => {
       return {
         severity: "success",
-        message
-      }
-    })
-  }
+        message,
+      };
+    });
+  };
+
+  const showErrorNotification = (message: string) => {
+    setOpen(true);
+    setToastConfig(() => {
+      return {
+        severity: "error",
+        message,
+      };
+    });
+  };
 
   const value = {
-    showSuccessNotification
-  }
+    showSuccessNotification,
+    showErrorNotification,
+  };
 
   return (
     <toastContext.Provider value={value}>
-      <Snackbar open={open} autoHideDuration={5000} message={toastConfig.message} onClose={() => setOpen(false)} anchorOrigin={{horizontal: "center", vertical: "top"}}>
-        <Alert severity={toastConfig.severity} sx={{ width: "100%" }}>
-          This is a success message!
+      <Snackbar
+        open={open}
+        autoHideDuration={5000}
+        message={toastConfig?.message}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{ horizontal: "center", vertical: "top" }}
+      >
+        <Alert severity={toastConfig?.severity} sx={{ width: "100%" }}>
+          {toastConfig?.message}
         </Alert>
       </Snackbar>
       {children}
