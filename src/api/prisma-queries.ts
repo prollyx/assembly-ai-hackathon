@@ -1,13 +1,5 @@
-import {
-  Feature,
-  Prisma,
-  PrismaClient,
-  Project,
-  Responses,
-  User,
-} from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Feature, Project, Responses, User, Prisma } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 
 export const getAllUsers = async () => {
   try {
@@ -61,12 +53,13 @@ export async function getUserFromEmail(email?: string): Promise<User | null> {
 export async function addProject(
   input: Prisma.ProjectCreateInput
 ): Promise<Project> {
-  return new Promise(async (resolve, reject) => {
-    await prisma.project
-      .create({ data: input })
-      .then((data) => resolve(data))
-      .catch((e) => reject(e));
-  });
+  try {
+    const project = await prisma.project.create({ data: input });
+
+    return project;
+  } catch (e) {
+    throw new Error("projects not found");
+  }
 }
 
 /** update Project */
@@ -111,9 +104,14 @@ export async function getAllUserProjects(userId: string): Promise<Project[]> {
   }
 }
 
-export async function getAllProjects(): Promise<Project[]> {
+/** Get all user projects */
+export async function getAllUserProjectsFromEmail(
+  email: string
+): Promise<Project[]> {
   try {
-    const projects = await prisma.project.findMany();
+    const projects = await prisma.project.findMany({
+      where: { user: { email: email } },
+    });
 
     return projects;
   } catch (e) {

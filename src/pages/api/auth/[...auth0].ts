@@ -2,7 +2,7 @@ import { handleAuth, Session, handleCallback } from "@auth0/nextjs-auth0";
 import { UserProfile, useUser } from "@auth0/nextjs-auth0/client";
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import Error from "next/error";
-import { addUser, getUserFromEmail } from "../../../api/prisma";
+import { addUser, getUserFromEmail } from "../../../api/prisma-queries";
 
 const afterCallback = async (
   req: NextApiRequest,
