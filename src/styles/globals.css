@@ -43,7 +43,7 @@ button, button[type="submit"] {
 }
 
 .drawer-section-title {
-  @apply text-gray-800 text-sm uppercase mb-2;
+  @apply text-gray-500 text-sm uppercase mb-2;
 }
 
 .drawer-link {
