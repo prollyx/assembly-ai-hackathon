@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint --ext .ts* src/",
+    "lint:fix": "eslint --ext .ts* src/ --fix",
+    "format": "prettier --write src/**/*.{ts,js,tsx,jsx,json,md}",
     "prisma": "npx prisma",
     "prisma:format": "npx prisma format",
     "generate": "npx prisma generate"
