@@ -55,6 +55,8 @@ export async function addFeature(
     projectId: string
   ): Promise<Feature[]> {
      return new Promise(async (resolve, reject) => {
+      console.log({projectId});
+      
     await prisma.feature
       .findMany({ where: {projectId} })
       .then((result) => resolve(result))

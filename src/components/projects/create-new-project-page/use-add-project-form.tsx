@@ -1,3 +1,4 @@
+import {useRouter} from "next/router"
 import {useForm} from "react-hook-form"
 import {useAddProjectMutation} from "../../../api/project/use-add-project.mutation"
 import {useNotification} from "../../../context/notification.provider"
@@ -5,16 +6,17 @@ import {useNotification} from "../../../context/notification.provider"
 const useAddProjectForm = () => {
     const {handleSubmit, register, reset} = useForm()
     const {showErrorNotification, showSuccessNotification} = useNotification()
+    const {push}  = useRouter()
 
 
-    const {trigger, isMutating } = useAddProjectMutation({
+    const {trigger, isMutating, error } = useAddProjectMutation({
         onSuccess: () => {
             showSuccessNotification('Project created successfully')
             reset()
-            //TODO: redirect to project page
+            push('/projects')
         },
-        onError: () => {
-            showErrorNotification('There was an error creating your project. Please try again.')
+        onError: (e) => {        
+            showErrorNotification(e.message)
         }
     })
 
@@ -26,6 +28,7 @@ const useAddProjectForm = () => {
         onSubmit,
         register,
         isMutating,
+        error
     }
 
 

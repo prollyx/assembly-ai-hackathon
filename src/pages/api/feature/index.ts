@@ -1,7 +1,8 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import {addFeature, getProjectFeatures} from "../../../../api/database/features";
-import {HTTPMethod} from "../../../../types";
+import {addFeature, getProjectFeatures} from "../../../api/database/features";
+import {HTTPMethod} from "../../../types";
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
@@ -18,17 +19,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .catch(e => res.status(400).send(e.message))
 
      
-    } else if (req.method === HTTPMethod.GET) {
-      const pid = req.query.projectId
-      console.log({pid});
-
-      if (!pid) {
-        res.status(400).send("projectId not found")
-        return
-      }
-      
-      const features = await getProjectFeatures(pid as string)
-
-      res.status(200).json(features)
     }
   }

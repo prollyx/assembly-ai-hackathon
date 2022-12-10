@@ -7,14 +7,15 @@ const prisma = new PrismaClient();
 export async function addProject(
     input: Prisma.ProjectCreateInput
   ): Promise<Project> {
-    try {
-      const project = await prisma.project.create({ data: input });
-  
-      return project;
-    } catch (e) {
-      throw new Error("projects not found");
-    }
-  }
+    return new Promise(async (resolve, reject) => {
+      await prisma.project
+        .create({ data: input })
+        .then((data) => resolve(data))
+        .catch((error) => {
+               reject(error)
+        });
+    })
+ }
   
   /** update Project */
   export async function updateProject(

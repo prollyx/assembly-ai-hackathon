@@ -9,7 +9,7 @@ import {useTemplateConfig, TemplateConfig} from "./use-template-config";
 const useTemplateForm = () => {
   const { handleSubmit, register, setValue, watch } = useForm();
   const { user } = useUser();
-  const { templateConfig, loading } = useTemplateConfig();
+  const { templateConfig } = useTemplateConfig();
 
   const [response, setResponse] = useState<any>(null);
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateType>(
@@ -78,7 +78,6 @@ const useTemplateForm = () => {
   return {
     register,
     handleSubmit: handleSubmit(onSubmit, onError),
-    loading,
     response,
     selectedTemplate,
     setSelectedTemplate,

@@ -29,7 +29,6 @@ const NewFeatureForm:FC<NewFeatureFormProps> = ({onClose,projectId, projectName,
         <p className='my-4'>Please try and be as detailed as you possibly can. The more information that is provided the better the results will be.</p>
         <div>
             <form onSubmit={onSubmit}>
-                <p>{watch('feature_name')}</p>
                 <FormField label='Feature Name' register={register('feature_name', {required: true})}/>
                 <FormField label='Feature Description' register={register('description', {required: true})} autogenerateFunction={() => {
                     const args = {project_name:activeProject.name , project_description: activeProject.description, feature_name: watch('feature_name')}
