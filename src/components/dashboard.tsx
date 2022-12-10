@@ -1,7 +1,8 @@
 import React from "react";
 import useSWR from "swr";
+import Logout from "./logout";
 
-const DashboardPage = () => {
+const Dashboard = () => {
   const fetcher = (url: string) =>
     fetch(url)
       .then((res) => res.json())
@@ -13,8 +14,9 @@ const DashboardPage = () => {
     <>
       <h1>dashboard</h1>
       <pre>{JSON.stringify({ data, error, message: "Hello" }, null, 2)}</pre>
+      <Logout />
     </>
   );
 };
 
-export default DashboardPage;
+export default Dashboard;

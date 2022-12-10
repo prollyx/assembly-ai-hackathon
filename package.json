@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx prisma generate && next dev -p 8090",
+    "dev": "npx prisma generate && next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,6 +12,7 @@
     "generate": "npx prisma generate"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^2.0.1",
     "@prisma/client": "^4.7.1",
     "@types/node": "18.11.12",
     "@types/react": "18.0.26",
