@@ -11,9 +11,10 @@ export interface AddFeatureToProjectFormArgs {
 
 const useAddFeatureToProjectForm = (args: AddFeatureToProjectFormArgs) => {
 
+
     const {projectId} = args
 
-    const {handleSubmit, register, reset} = useForm()
+    const {handleSubmit, register, reset, watch, setValue} = useForm()
     const {showErrorNotification, showSuccessNotification} = useNotification()
 
 
@@ -48,7 +49,8 @@ const useAddFeatureToProjectForm = (args: AddFeatureToProjectFormArgs) => {
         onSubmit,
         register,
         isMutating,
-        generateFeatureDescription
+        generateFeatureDescription,
+        watch, setValue
     }
 
 

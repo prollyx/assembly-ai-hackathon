@@ -7,7 +7,7 @@ import {useTemplateConfig, TemplateConfig} from "./use-template-config";
 
 
 const useTemplateForm = () => {
-  const { handleSubmit, register, setValue } = useForm();
+  const { handleSubmit, register, setValue, watch } = useForm();
   const { user } = useUser();
   const { templateConfig, loading } = useTemplateConfig();
 
@@ -87,6 +87,7 @@ const useTemplateForm = () => {
     templateConfig,
     setValue,
     autoFillTemplateFields,
+    watch
   };
 };
 

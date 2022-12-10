@@ -7,6 +7,7 @@ import {
   GenerateTestCasesArgs,
   generateUserStories,
   generateAcceptanceCriteriaBDD,
+  generateFeatureDescription,
 } from "./lib/prompts/generate-completions-prompt";
 import { TemplateType } from "./types";
 
@@ -35,11 +36,12 @@ export const AutoFillRequirementsFieldValues: GenerateRequirementsArgs = {
   description: "As a user I want to login So that I can view products",
 };
 
-export const mapTemplateToGeneratePrompt: Record<string, any> = {
+export const mapTemplateToGeneratePrompt: Record<TemplateType, any> = {
   [TemplateType.TEST_CASES]: generateTestCasePrompt,
   [TemplateType.HAPPY_PATH]: generateHappyPathPrompt,
   [TemplateType.USER_STORIES]: generateUserStories,
   [TemplateType.SAD_PATH]: generateSadPathPrompt,
   [TemplateType.REQUIREMENTS]: generateRequirementPrompt,
   [TemplateType.ACCEPTANCE_CRITERIA]: generateAcceptanceCriteriaBDD,
+  [TemplateType.FEATURE_DESCRIPTION]: generateFeatureDescription,
 };

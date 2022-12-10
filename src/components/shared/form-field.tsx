@@ -1,3 +1,4 @@
+import {CircularProgress} from "@mui/material";
 import React, { FC } from "react";
 
 export interface FormFieldProps {
@@ -6,6 +7,8 @@ export interface FormFieldProps {
   multiline?: boolean;
   register?: any;
   id?: string;
+  autogenerateFunction?: () => void;
+  autogenerateLoading?: boolean;
 }
 
 const FormField: FC<FormFieldProps> = ({
@@ -14,10 +17,19 @@ const FormField: FC<FormFieldProps> = ({
   multiline,
   register,
   id,
+  autogenerateFunction, 
+  autogenerateLoading,
+
 }) => {
   return (
     <div className="mb-5" id={id}>
-      <p className="font-semibold mb-2">{label}</p>
+      <div className="flex items-center my-2">
+        <p className="font-semibold  mr-4">{label}</p>
+        {autogenerateFunction &&  <>
+          <button className='generate-button mr-4' onClick={autogenerateFunction}>Generate {label} ⚡️🤖</button>
+          {autogenerateLoading && <CircularProgress className='text-teal-800' size={24} />}
+        </>}
+      </div>
       {multiline ? (
         <textarea
           placeholder={placeholder}

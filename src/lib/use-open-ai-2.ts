@@ -25,6 +25,7 @@ const useOpenAI2 = () => {
 
       try {
         setLoading(true);
+
         const response = await openai.createCompletion({
           ...openAIConfig,
           prompt: mapTemplateToGeneratePrompt[template](args),

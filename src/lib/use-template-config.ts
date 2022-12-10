@@ -16,6 +16,8 @@ export const useTemplateConfig = () => {
     generateSadPath,
     generateRequirements,
     generateUserStories,
+    generateFeatureDescription,
+    generateAcceptanceCriteria
   } = useOpenAI();
 
   const templateConfig: Record<TemplateType, TemplateConfig> = {
@@ -27,7 +29,7 @@ export const useTemplateConfig = () => {
         FormFieldType.DESCRIPTION,
         FormFieldType.REQUIREMENTS,
       ],
-      onSubmit: generateTestCases,
+      onSubmit: generateFeatureDescription,
     },
     [TemplateType.ACCEPTANCE_CRITERIA]: {
         name: "Generate Acceptance Criteria",
@@ -37,7 +39,7 @@ export const useTemplateConfig = () => {
           FormFieldType.DESCRIPTION,
           FormFieldType.REQUIREMENTS,
         ],
-        onSubmit: generateTestCases,
+        onSubmit: generateAcceptanceCriteria,
       },
     [TemplateType.REQUIREMENTS]: {
         name: "Generate Feature Requirements",
@@ -47,7 +49,7 @@ export const useTemplateConfig = () => {
           FormFieldType.DESCRIPTION,
           FormFieldType.REQUIREMENTS,
         ],
-        onSubmit: generateTestCases,
+        onSubmit: generateRequirements,
       },
     [TemplateType.TEST_CASES]: {
       name: "Generate Test Cases",

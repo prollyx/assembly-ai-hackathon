@@ -51,6 +51,13 @@ const useOpenAI = () => {
     ): Promise<string> => {
     return generateResponse(TemplateType.FEATURE_DESCRIPTION, args)
     };
+
+    const generateAcceptanceCriteria = async (
+      args: GenerateTestCasesArgs
+      ): Promise<string> => {
+      return generateResponse(TemplateType.ACCEPTANCE_CRITERIA, args)
+      };
+      
     
 
   return {
@@ -59,7 +66,8 @@ const useOpenAI = () => {
     generateSadPath,
     generateRequirements,
     generateUserStories,
-    generateFeatureDescription
+    generateFeatureDescription,
+    generateAcceptanceCriteria
   };
 };
 
