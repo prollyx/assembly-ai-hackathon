@@ -7,13 +7,13 @@ import {
   GenerateTestCasesArgs,
   generateUserStories,
   generateAcceptanceCriteriaBDD,
-  generateFeatureDescription,
+  GenerateUserStories,
 } from "./lib/prompts/generate-completions-prompt";
 import { TemplateType } from "./types";
 
 export const MaxExternalUserSubmissions = 1;
-export const GLOBAL_TEMPERATURE = 0.7;
-export const GLOBAL_MAX_TOKENS = 3000;
+export const GLOBAL_TEMPERATURE = 0.3;
+export const GLOBAL_MAX_TOKENS = 2600;
 
 export const AutoFillGeneralFieldValues: GenerateTestCasesArgs = {
   name: "Add Contact to phone book",
@@ -22,13 +22,13 @@ export const AutoFillGeneralFieldValues: GenerateTestCasesArgs = {
   `,
 };
 
-export const AutoFillAcceptanceCriteria: GenerateTestCasesArgs = {
-  name: "Add Contact",
-  description: `Verify that when the user enters valid data in all the required fields and clicks the "Add contact" button, the "Enter confirmation code" modal shows up on the screen. 
+export const AutoFillAcceptanceCriteria: GenerateUserStories = {
+  project_name: " Contact Book",
+  project_description: ``,
+  feature_name: `Add contact to addressbook`,
+  feature_description: `Verify that when the user enters valid data in all the required fields and clicks the "Add contact" button, the "Enter confirmation code" modal shows up on the screen. 
   A confirmation code will be sent to the user's email address. 
   If the confirmation code is valid the contact will be added to the user's address book.`,
-  requirements: `- Confirmation code only last 5 mins.\n- User can only enter confirmation code 3 times. \n - Modal will not show if invalid data is entered
-  `,
 };
 
 export const AutoFillRequirementsFieldValues: GenerateRequirementsArgs = {
@@ -36,12 +36,11 @@ export const AutoFillRequirementsFieldValues: GenerateRequirementsArgs = {
   description: "As a user I want to login So that I can view products",
 };
 
-export const mapTemplateToGeneratePrompt: Record<TemplateType, any> = {
+export const mapTemplateToGeneratePrompt: Record<string, any> = {
   [TemplateType.TEST_CASES]: generateTestCasePrompt,
   [TemplateType.HAPPY_PATH]: generateHappyPathPrompt,
   [TemplateType.USER_STORIES]: generateUserStories,
   [TemplateType.SAD_PATH]: generateSadPathPrompt,
   [TemplateType.REQUIREMENTS]: generateRequirementPrompt,
   [TemplateType.ACCEPTANCE_CRITERIA]: generateAcceptanceCriteriaBDD,
-  [TemplateType.FEATURE_DESCRIPTION]: generateFeatureDescription,
 };
