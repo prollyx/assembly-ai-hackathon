@@ -8,7 +8,7 @@ const Dashboard = () => {
       .then((res) => res.json())
       .catch((e) => console.log(e));
 
-  const { data, error, isLoading } = useSWR("/api/sample", fetcher);
+  const { data, error, isLoading } = useSWR("/api/projects", fetcher);
 
   if (isLoading) return <div>loading...</div>;
 

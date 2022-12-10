@@ -61,13 +61,12 @@ export async function getUserFromEmail(email?: string): Promise<User | null> {
 export async function addProject(
   input: Prisma.ProjectCreateInput
 ): Promise<Project> {
-  try {
-    const project = await prisma.project.create({ data: input });
-
-    return project;
-  } catch (e) {
-    throw new Error("projects not found");
-  }
+  return new Promise(async (resolve, reject) => {
+    await prisma.project
+      .create({ data: input })
+      .then((data) => resolve(data))
+      .catch((e) => reject(e));
+  });
 }
 
 /** update Project */
@@ -105,6 +104,16 @@ export async function deleteProject(
 export async function getAllUserProjects(userId: string): Promise<Project[]> {
   try {
     const projects = await prisma.project.findMany({ where: { id: userId } });
+
+    return projects;
+  } catch (e) {
+    throw new Error("projects not found");
+  }
+}
+
+export async function getAllProjects(): Promise<Project[]> {
+  try {
+    const projects = await prisma.project.findMany();
 
     return projects;
   } catch (e) {

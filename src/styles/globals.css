@@ -4,22 +4,42 @@
 
 .html,
 body {
-  height: 100vh;
+  @apply h-screen w-screen bg-gray-50
 }
 
 /* COMMON */
 
 p {
-  @apply text-gray-800;
+  @apply text-gray-800 text-sm;
 }
 
 h1 {
   @apply text-3xl font-bold text-gray-800;
 }
 
+h2 {
+  @apply text-xl font-bold text-gray-800;
+}
+
+input {
+  @apply w-full h-10 px-5 rounded-md border-2 border-gray-300;
+}
+
+textarea {
+  @apply w-full p-5 rounded-md border-2 border-gray-300;
+}
+
+.main-content {
+  @apply mt-10
+}
+
+button, button[type="submit"] {
+  @apply bg-teal-800 text-white font-bold py-2 px-4 rounded hover:bg-teal-700 text-sm;
+}
+
 /* DRAWER */
 .drawer {
-  @apply bg-gray-100 flex flex-col h-screen overflow-hidden w-64 p-6;
+  @apply bg-white flex flex-col h-screen overflow-hidden w-64 p-6;
 }
 
 .drawer-section-title {
@@ -37,11 +57,24 @@ h1 {
 /* PAGE LAYOUT */
 
 .page-container {
-  @apply flex flex-row flex-1 h-screen overflow-hidden;
+  @apply flex flex-row flex-1 h-screen;
 }
 
 .page-layout-main-containter {
-  @apply flex flex-col flex-1 overflow-hidden m-12 max-w-4xl;
+  @apply flex flex-col flex-1 m-12 max-w-4xl;
+}
+
+/* PROJECTS PAGE */
+.project-card {
+  @apply bg-white rounded-lg p-6 mb-6 cursor-pointer hover:outline-2 hover:outline-gray-300 hover:outline h-56;
+}
+
+.project-card-description {
+  @apply overflow-hidden max-h-36
+}
+
+.project-card-wrapper {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
 }
 
 
