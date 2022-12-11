@@ -64,7 +64,7 @@ const useTemplateForm = () => {
     template: TemplateType = selectedTemplate
   ) => {
     console.log("Fetch auto fill fields");
-    const autoFill: Record<TemplateType, object> = {
+    const autoFill: Record<any, object> = {
       [TemplateType.TEST_CASES]: AutoFillGeneralFieldValues,
       [TemplateType.HAPPY_PATH]: AutoFillGeneralFieldValues,
       [TemplateType.SAD_PATH]: AutoFillGeneralFieldValues,
