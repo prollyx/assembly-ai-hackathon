@@ -3,9 +3,9 @@ import {RequestDefaultArgs} from '../../types'
 import {sendRequest} from '../send-request'
 
 const useAddFeatureToProjectMuatation = (id: string,{onSuccess, onError}: RequestDefaultArgs) => {
-    return useSWRMutation(`/api/projects/${id}/features`, sendRequest, {
+    return useSWRMutation(`/api/feature`, sendRequest, {
         onSuccess: () => onSuccess?.(),
-        onError: () => onError?.()
+        onError: (e) => onError?.(e)
         
     })
 }

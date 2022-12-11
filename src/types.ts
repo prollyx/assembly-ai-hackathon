@@ -18,7 +18,7 @@ export enum HTTPMethod {
 
 export interface RequestDefaultArgs {
   onSuccess?: VoidFunction;
-  onError?: VoidFunction;
+  onError?: ErrorCallback;
 }
 
 export enum TemplateType {

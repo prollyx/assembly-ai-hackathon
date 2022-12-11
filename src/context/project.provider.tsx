@@ -17,7 +17,7 @@ const ProjectProvider: FC<PropsWithChildren> = ({children}) => {
 
     const [activeProject, setActiveProject] = useState<Project>()
 
-    const {asPath, query} = useRouter()
+    const {query} = useRouter()
 
     const projectId = query.id as string
 
@@ -42,6 +42,7 @@ const ProjectProvider: FC<PropsWithChildren> = ({children}) => {
     }
 
     return (
+        // @ts-ignore
         <projectContext.Provider value={value}>
         {children}
         </projectContext.Provider>

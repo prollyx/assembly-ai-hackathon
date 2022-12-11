@@ -10,7 +10,7 @@ const useGetProjectById = (id: string) => {
         setIsReady(true);
     }
 
-    const result =  useSWR(`/api/projects/${id}`, fetcher, {suspense: true});
+    const result =  useSWR(`/api/projects/${id}`, fetcher);
 
     return {
         ...result,

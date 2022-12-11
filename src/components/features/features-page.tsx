@@ -6,6 +6,7 @@ import EmptyProjectImage from '../projects/create-new-project-page/empty-project
 import {ProjectCard} from '../projects/project-card'
 import AddIcon from '@mui/icons-material/Add';
 import {NewFeatureForm} from './new-feature-form'
+import {useProjectContext} from '../../context/project.provider'
 
 
 export interface FeaturesPageProps {
@@ -17,6 +18,8 @@ const FeaturesPage:FC<FeaturesPageProps> = ({projectId}) => {
     const [isFeatureFormVisible, setIsFeatureFormVisible] = useState(false)
 
     const {data, isLoading, error} = useGetFeaturesByProjectId(projectId)
+
+    const {activeProject} = useProjectContext()
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -31,7 +34,10 @@ const FeaturesPage:FC<FeaturesPageProps> = ({projectId}) => {
     return (
         <div>
             <div className='flex justify-between'>
-                <h1>Features</h1>
+                <div>
+                    <h2 className='text-gray-400'>Project: {activeProject?.name}</h2>
+                    <h1>Features</h1>
+                </div>
                 <button onClick={() => setIsFeatureFormVisible(true)}>Create Feature <AddIcon /></button>
             </div>
            {isFeatureFormVisible && <NewFeatureForm projectId={projectId} onClose={() => setIsFeatureFormVisible(false)}/>}
