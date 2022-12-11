@@ -1,8 +1,10 @@
 import React from "react";
 import useSWR from "swr";
 import { PageLayout } from "../components/page-layout";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { ViewAllProjectsPage } from "../components/projects/view-all-projects-page";
 
-const Dashboard = () => {
+export default function DashboardPage() {
   const fetcher = (url: string) =>
     fetch(url)
       .then((res) => res.json())
@@ -16,9 +18,9 @@ const Dashboard = () => {
 
   return (
     <PageLayout>
-      <h1>Dashboard</h1>
+      <ViewAllProjectsPage />
     </PageLayout>
   );
-};
+}
 
-export default Dashboard;
+export const getServerSideProps = withPageAuthRequired();
