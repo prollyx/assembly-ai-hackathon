@@ -47,12 +47,12 @@ const Drawer: FC = () => {
       
 
         <div className="mb-10">
-          <span className="flex text-red-700 hover:text-red-500 font-bold  cursor-pointer">
             <Link href="/api/auth/logout">
-              <p className="mr-2 text-red-700 hover:text-red-500">Logout</p>
+              <span className="flex text-red-700 hover:text-red-500 font-bold  cursor-pointer">
+                  <p className="mr-2 text-red-700 hover:text-red-500">Logout</p>
+                  <Logout />
+              </span>
             </Link>
-            <Logout />
-          </span>
         </div>
       </div>
     </div>

@@ -12,8 +12,7 @@ const afterCallback = async (
 ) => {
   if (session) {
     getUserFromEmail(session.user.email).catch(async (e) => {
-      // console.log(e);
-      const newUser = await addUser({
+      await addUser({
         firstname: session.user.given_name,
         lastname: session.user.family_name,
         email: session.user.email,

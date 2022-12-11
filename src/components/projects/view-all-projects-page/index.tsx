@@ -13,6 +13,8 @@ const ViewAllProjectsPage = () => {
 
     const {setActiveProject} = useProjectContext()
 
+    let hasProjects = data && data?.length > 0
+
     if (isLoading) {
         return <div>Loading...</div>
     }
@@ -21,7 +23,6 @@ const ViewAllProjectsPage = () => {
         return <div>Could not load projects</div>
     }
 
-    let hasProjects = data && data.length > 0
 
 
     return (
@@ -34,12 +35,13 @@ const ViewAllProjectsPage = () => {
             </div>
         <div className='main-content project-card-wrapper flex'>
             {
-            hasProjects ? 
-            data.map((project: Project) => <ProjectCard onClick={() => setActiveProject(project)} key={project.id} {...project}/>):   <div className=''>
+            data ? 
+            data?.map((project: Project) => <ProjectCard onClick={() => setActiveProject(project)} key={project.id} {...project}/>):   <div className=''>
             <EmptyProjectImage />
             </div>
             }
         </div>
+        <pre>{JSON.stringify({data}, null, 2)}</pre>
         </div>
     )
 }

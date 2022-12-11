@@ -3,7 +3,7 @@ import {fetcher} from "../fetcher";
 
 
 const useGetFeaturesByProjectId = (id: string) => {
-    return useSWR(`/api/projects/${id}/features`, fetcher);
+    return useSWR(`/api/feature/${id}`, fetcher);
 }
 
 export {useGetFeaturesByProjectId};

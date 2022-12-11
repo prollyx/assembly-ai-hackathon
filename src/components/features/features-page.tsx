@@ -18,6 +18,8 @@ const FeaturesPage:FC<FeaturesPageProps> = ({projectId}) => {
     const [isFeatureFormVisible, setIsFeatureFormVisible] = useState(false)
 
     const {data, isLoading, error} = useGetFeaturesByProjectId(projectId)
+    
+    let hasFeatures = data && data.length > 0
 
     const {activeProject} = useProjectContext()
 
@@ -28,8 +30,6 @@ const FeaturesPage:FC<FeaturesPageProps> = ({projectId}) => {
     if (error) {
         return <div>Could not load projects</div>
     }
-
-    let hasFeatures = data && data.length > 0
 
     return (
         <div>
@@ -44,7 +44,7 @@ const FeaturesPage:FC<FeaturesPageProps> = ({projectId}) => {
             <div className='main-content project-card-wrapper flex'>
                 {
                 hasFeatures ? 
-                data.map((feature: Feature) => <ProjectCard key={feature.id} {...feature}/>):   <div className=''>
+                data?.map((feature: Feature) => <ProjectCard key={feature.id} {...feature}/>):   <div className=''>
                 <EmptyProjectImage />
                 </div>
                 }

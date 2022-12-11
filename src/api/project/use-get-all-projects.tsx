@@ -3,7 +3,14 @@ import {fetcher} from "../fetcher";
 
 
 const useGetAllProjects = () => {
-    return useSWR("/api/projects", fetcher);
+    const {data, isLoading, error} =  useSWR("/api/projects/", fetcher);
+
+    console.log({data});
+    
+
+    return {
+        data, isLoading, error
+    }
 }
 
 export {useGetAllProjects};
