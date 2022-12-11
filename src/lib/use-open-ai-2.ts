@@ -1,12 +1,10 @@
 import { Configuration, OpenAIApi } from "openai";
 import { useState } from "react";
-import {
-  GenerateTestCasesArgs,
-  generateUserStories as _generateUserStories,
-} from "./prompts/generate-completions-prompt";
+import { generateUserStories as _generateUserStories } from "./prompts/generate-completions-prompt";
 import { openAIConfig } from "../config/config";
 import { TemplateType } from "../types";
 import { mapTemplateToGeneratePrompt } from "../constants";
+import { GenericAIResponseArgs } from "./use-open-ai";
 
 const configuration = new Configuration({
   apiKey: process.env.NEXT_PUBLIC_OPEN_API_KEY,
@@ -18,7 +16,7 @@ const useOpenAI2 = () => {
 
   const generateResponse = async (
     template: TemplateType,
-    args: GenerateTestCasesArgs,
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return new Promise(async (resolve, reject) => {
       console.log({ args }, template);
@@ -26,9 +24,11 @@ const useOpenAI2 = () => {
       try {
         setLoading(true);
 
+        const prompt = mapTemplateToGeneratePrompt[template](args);
+
         const response = await openai.createCompletion({
           ...openAIConfig,
-          prompt: mapTemplateToGeneratePrompt[template](args),
+          prompt,
         });
         setLoading(false);
 

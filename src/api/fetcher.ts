@@ -1,7 +1,7 @@
-export const fetcher = (url: string) =>{
-  console.log({url});
+export const fetcher = (url: string) => {
+  console.log({ url });
 
   return fetch(url)
     .then((res) => res.json())
-    .catch((e) => console.log(e))
-}
+    .catch((e) => console.log(e));
+};

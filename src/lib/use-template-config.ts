@@ -1,6 +1,5 @@
-import {FormFieldType, TemplateType} from "../types";
+import { FormFieldType, TemplateType } from "../types";
 import { useOpenAI } from "./use-open-ai";
-
 
 export interface TemplateConfig {
   name: string;
@@ -17,7 +16,8 @@ export const useTemplateConfig = () => {
     generateRequirements,
     generateUserStories,
     generateFeatureDescription,
-    generateAcceptanceCriteria
+    generateAcceptanceCriteria,
+    loading,
   } = useOpenAI();
 
   const templateConfig: Record<TemplateType, TemplateConfig> = {
@@ -32,25 +32,25 @@ export const useTemplateConfig = () => {
       onSubmit: generateFeatureDescription,
     },
     [TemplateType.ACCEPTANCE_CRITERIA]: {
-        name: "Generate Acceptance Criteria",
-        description: "Generate Acceptance Criteria",
-        fields: [
-          FormFieldType.FEAUTRE_NAME,
-          FormFieldType.DESCRIPTION,
-          FormFieldType.REQUIREMENTS,
-        ],
-        onSubmit: generateAcceptanceCriteria,
-      },
+      name: "Generate Acceptance Criteria",
+      description: "Generate Acceptance Criteria",
+      fields: [
+        FormFieldType.FEAUTRE_NAME,
+        FormFieldType.DESCRIPTION,
+        FormFieldType.REQUIREMENTS,
+      ],
+      onSubmit: generateAcceptanceCriteria,
+    },
     [TemplateType.REQUIREMENTS]: {
-        name: "Generate Feature Requirements",
-        description: "Generate Feature Requirements",
-        fields: [
-          FormFieldType.FEAUTRE_NAME,
-          FormFieldType.DESCRIPTION,
-          FormFieldType.REQUIREMENTS,
-        ],
-        onSubmit: generateRequirements,
-      },
+      name: "Generate Feature Requirements",
+      description: "Generate Feature Requirements",
+      fields: [
+        FormFieldType.FEAUTRE_NAME,
+        FormFieldType.DESCRIPTION,
+        FormFieldType.REQUIREMENTS,
+      ],
+      onSubmit: generateRequirements,
+    },
     [TemplateType.TEST_CASES]: {
       name: "Generate Test Cases",
       description: "Generate Test Cases",
@@ -101,5 +101,6 @@ export const useTemplateConfig = () => {
 
   return {
     templateConfig,
+    loading,
   };
 };

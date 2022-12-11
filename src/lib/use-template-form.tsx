@@ -1,10 +1,12 @@
-import {useUser} from "@auth0/nextjs-auth0/client";
-import {useState, useEffect} from "react";
-import {useForm, SubmitErrorHandler, FieldValues} from "react-hook-form";
-import {AutoFillGeneralFieldValues, AutoFillRequirementsFieldValues} from "../constants";
-import {TemplateType} from "../types";
-import {useTemplateConfig, TemplateConfig} from "./use-template-config";
-
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useState, useEffect } from "react";
+import { useForm, SubmitErrorHandler, FieldValues } from "react-hook-form";
+import {
+  AutoFillGeneralFieldValues,
+  AutoFillRequirementsFieldValues,
+} from "../constants";
+import { TemplateType } from "../types";
+import { useTemplateConfig, TemplateConfig } from "./use-template-config";
 
 const useTemplateForm = () => {
   const { handleSubmit, register, setValue, watch } = useForm();
@@ -86,7 +88,7 @@ const useTemplateForm = () => {
     templateConfig,
     setValue,
     autoFillTemplateFields,
-    watch
+    watch,
   };
 };
 

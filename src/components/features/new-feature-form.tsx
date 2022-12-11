@@ -1,5 +1,6 @@
 import React, {FC} from 'react'
 import {useProjectContext} from '../../context/project.provider';
+import {GenericAIResponseArgs} from '../../lib/use-open-ai';
 import {useTemplateConfig} from '../../lib/use-template-config';
 import {FormField} from '../shared/form-field';
 import {useAddFeatureToProjectForm} from './use-add-feature-form';
@@ -20,9 +21,7 @@ const NewFeatureForm:FC<NewFeatureFormProps> = ({onClose,projectId, projectName,
 
     const {onSubmit: autoGenerateFeatureDescription} = templateConfig['FEATURE_DESCRIPTION']
 
-    const {activeProject} = useProjectContext()
-
-   
+    const {activeProject} = useProjectContext() 
 
     return (
         <div className='my-4'>
@@ -31,7 +30,19 @@ const NewFeatureForm:FC<NewFeatureFormProps> = ({onClose,projectId, projectName,
             <form onSubmit={onSubmit}>
                 <FormField label='Feature Name' register={register('feature_name', {required: true})}/>
                 <FormField label='Feature Description' register={register('description', {required: true})} autogenerateFunction={() => {
-                    const args = {project_name:activeProject.name , project_description: activeProject.description, feature_name: watch('feature_name')}
+                    const args: GenericAIResponseArgs = {
+                        project: activeProject,
+                        feature: {
+                            name: watch('feature_name'),
+                            description: watch('description'),
+                            id: "",
+                            acceptance_criteria: null,
+                            requirements: null,
+                            projectId: activeProject.id,
+                            test_cases: null,
+                            user_stories: null
+                        }
+                    }
                     console.log({args});
                     
                     autoGenerateFeatureDescription(args).then((data) =>setValue('description', data)

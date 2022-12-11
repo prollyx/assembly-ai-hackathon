@@ -1,131 +1,92 @@
-export interface GenerateTestCasesArgs {
-  name: string;
-  description: string;
-  requirements: string;
+import {GenericAIResponseArgs} from "../use-open-ai";
+
+const promptTemplate = (args: GenericAIResponseArgs) => {
+  const { feature, project } = args;
+
+  return `Project: ${project?.name}
+  Project description: ${project?.description}
+  Feature: ${feature?.name}
+  Description: ${feature?.description}
+  ${feature?.requirements ? `Requirements: ${feature?.requirements}` : ""}
+  ${feature?.acceptance_criteria ? `Acceptance Criteria: ${feature?.acceptance_criteria}` : ""}
+  ${feature?.user_stories ? `User Stories: ${feature?.user_stories}` : ""} 
+  `
 }
 
-export interface GenerateRequirementsArgs {
-  name: string;
-  description: string;
-}
 
-export interface GenerateFeatureDescription {
-  project_name: string;
-  project_description: string;
-  feature_name: string;
-}
-
-export interface GenerateUserStories {
-  project_name: string;
-  project_description: string;
-  feature_name: string;
-  feature_description: string;
-}
-
-export const generateTestCasePrompt = (args: GenerateTestCasesArgs) => {
-  const { name, description, requirements } = args;
+export const generateTestCasePrompt = (args: GenericAIResponseArgs) => {
 
   return `
-    Feature: ${name}
-    Description: ${description}
-    Requirements: ${requirements}
+    ${promptTemplate(args)}
 
-    Given the above information, create a list of test cases that you would use to test this feature. The result should start with "Verify that when ".
+    Given the above information, create a list of all the test cases that that would be used to test this feature. The result should start with "Verify that when".
     `;
 };
 
 export const generateFeatureDescription = (
-  args: GenerateFeatureDescription
+  args: GenericAIResponseArgs
 ) => {
-  const { project_name, project_description, feature_name } = args;
+  const { feature, project } = args;
 
   return `
-    Project name: ${project_name}
-    Project description: ${project_description}
-    Feature name: ${feature_name}
+    ${promptTemplate(args)}
 
     Given the above information, create a description for the above feature.
     `;
 };
 
-export const generateUserStories = (args: GenerateUserStories) => {
-  const {
-    project_name,
-    project_description,
-    feature_name,
-    feature_description,
-  } = args;
+export const generateUserStories = (args: GenericAIResponseArgs) => {
+  const { feature, project } = args;
 
   return `
-    Project name: ${project_name}
-    Project description: ${project_description}
-    Feature name: ${feature_name}
-    Feature Description: ${feature_description}
+  ${promptTemplate(args)}
 
     Given the above information, create a list of possible user stories for this feature using Gerkin format".
     `;
 };
 
-export const generateHappyPathPrompt = (args: GenerateTestCasesArgs) => {
-  const { name, description, requirements } = args;
+export const generateHappyPathPrompt = (args: GenericAIResponseArgs) => {
+  
 
   return `
-      Feature: ${name}
-      Description: ${description}
-      Requirements: ${requirements}
+    ${promptTemplate(args)}
 
       Given the above information, create a list of happy paths for this feature.
       `;
 };
 
-export const generateSadPathPrompt = (args: GenerateTestCasesArgs) => {
-  const { name, description, requirements } = args;
+export const generateSadPathPrompt = (args: GenericAIResponseArgs) => {
 
   return `
-      Feature: ${name}
-      Description: ${description}
-      Requirements: ${requirements}
+      ${promptTemplate(args)}
 
       Given the above information, create a list of sad path test cases for this feature.
       `;
 };
 
-export const generateRequirementPrompt = (args: GenerateRequirementsArgs) => {
-  const { name, description } = args;
+export const generateRequirementPrompt = (args: GenericAIResponseArgs) => {
+  
 
   return `
-      Feature: ${name}
-      Description: ${description}
+      ${promptTemplate(args)}
 
       Given the above information, create a list of requirements for this feature.
       `;
 };
 
-export const generateAcceptanceCriteriaBDD = (args: GenerateUserStories) => {
-  const {
-    project_name,
-    project_description,
-    feature_name,
-    feature_description,
-  } = args;
+export const generateAcceptanceCriteriaBDD = (args: GenericAIResponseArgs) => {
 
   return `
-    Project name: ${project_name}
-    Project description: ${project_description}
-    Feature name: ${feature_name}
-    Feature Description: ${feature_description}
+      ${promptTemplate(args)}
 
       Given the feature description,  create a list of all acceptance criteria scenarios using Gerkin format.
       `;
 };
 
-export const generateAcceptanceCriteriaRule = (args: GenerateTestCasesArgs) => {
-  const { name, description, requirements } = args;
+export const generateAcceptanceCriteriaRule = (args: GenericAIResponseArgs) => {
 
   return `
-      Feature: ${name}
-      Description: ${description}
-      Requirements: ${requirements}
+    ${promptTemplate(args)}
 
 
       Given the above information,  create all acceptance criteria scenarios for this using Rule-Oriented format.
