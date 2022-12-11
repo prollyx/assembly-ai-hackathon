@@ -11,9 +11,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <UserProvider loginUrl="/api/auth/login">
         <SessionProvider>
           <ProjectProvider>
-            <div>
+            <div className="text-center">
               Here is the link to the github repo:
-              https://github.com/prollyx/assembly-ai-hackathon
+              <a href="https://github.com/prollyx/assembly-ai-hackathon">
+                https://github.com/prollyx/assembly-ai-hackathon
+              </a>
             </div>
             <Component {...pageProps} />
           </ProjectProvider>
