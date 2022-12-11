@@ -107,11 +107,13 @@ const Template: FC<TemplateProps> = ({
               <CircularProgress className="text-teal-800" size={24} />
             )}
           </div>
-          <div>
-            <button type="submit">Save {title}</button>
+          <div className="flex items-center">
             {isMutating && (
               <CircularProgress className="text-teal-800" size={24} />
             )}
+            <button type="submit" className="ml-4">
+              Save {title.toLowerCase()}
+            </button>
           </div>
         </span>
       </form>

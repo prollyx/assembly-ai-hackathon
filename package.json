@@ -11,7 +11,8 @@
     "format": "prettier --write src/**/*.{ts,js,tsx,jsx,json,md}",
     "prisma": "npx prisma",
     "prisma:format": "npx prisma format",
-    "generate": "npx prisma generate"
+    "generate": "npx prisma generate",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",

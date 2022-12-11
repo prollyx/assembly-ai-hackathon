@@ -64,6 +64,7 @@ model Feature {
   user_stories        String?
   test_cases          String?
   acceptance_criteria String?
+  edge_cases          String?
   project             Project?    @relation(fields: [projectId], references: [id])
   projectId           String     @db.ObjectId
   responses           Responses[]

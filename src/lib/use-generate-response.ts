@@ -11,7 +11,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const useOpenAI2 = () => {
+const useGenerateResponse = () => {
   const [loading, setLoading] = useState(false);
 
   const generateResponse = async (
@@ -50,4 +50,4 @@ const useOpenAI2 = () => {
   };
 };
 
-export { useOpenAI2 };
+export { useGenerateResponse };

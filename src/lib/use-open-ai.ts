@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
-import { useOpenAI2 } from "./use-open-ai-2";
+import { useGenerateResponse } from "./use-generate-response";
 import { TemplateType } from "../types";
 import { Feature, Project } from "@prisma/client";
 
@@ -14,7 +14,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const useOpenAI = () => {
-  const { generateResponse, loading } = useOpenAI2();
+  const { generateResponse, loading } = useGenerateResponse();
 
   const generateTestCases = async (
     args: GenericAIResponseArgs

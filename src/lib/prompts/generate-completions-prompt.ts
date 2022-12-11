@@ -1,4 +1,4 @@
-import {GenericAIResponseArgs} from "../use-open-ai";
+import { GenericAIResponseArgs } from "../use-open-ai";
 
 const promptTemplate = (args: GenericAIResponseArgs) => {
   const { feature, project } = args;
@@ -8,14 +8,16 @@ const promptTemplate = (args: GenericAIResponseArgs) => {
   Feature: ${feature?.name}
   Description: ${feature?.description}
   ${feature?.requirements ? `Requirements: ${feature?.requirements}` : ""}
-  ${feature?.acceptance_criteria ? `Acceptance Criteria: ${feature?.acceptance_criteria}` : ""}
+  ${
+    feature?.acceptance_criteria
+      ? `Acceptance Criteria: ${feature?.acceptance_criteria}`
+      : ""
+  }
   ${feature?.user_stories ? `User Stories: ${feature?.user_stories}` : ""} 
-  `
-}
-
+  `;
+};
 
 export const generateTestCasePrompt = (args: GenericAIResponseArgs) => {
-
   return `
     ${promptTemplate(args)}
 
@@ -23,9 +25,7 @@ export const generateTestCasePrompt = (args: GenericAIResponseArgs) => {
     `;
 };
 
-export const generateFeatureDescription = (
-  args: GenericAIResponseArgs
-) => {
+export const generateFeatureDescription = (args: GenericAIResponseArgs) => {
   const { feature, project } = args;
 
   return `
@@ -46,8 +46,6 @@ export const generateUserStories = (args: GenericAIResponseArgs) => {
 };
 
 export const generateHappyPathPrompt = (args: GenericAIResponseArgs) => {
-  
-
   return `
     ${promptTemplate(args)}
 
@@ -56,7 +54,6 @@ export const generateHappyPathPrompt = (args: GenericAIResponseArgs) => {
 };
 
 export const generateSadPathPrompt = (args: GenericAIResponseArgs) => {
-
   return `
       ${promptTemplate(args)}
 
@@ -65,30 +62,33 @@ export const generateSadPathPrompt = (args: GenericAIResponseArgs) => {
 };
 
 export const generateRequirementPrompt = (args: GenericAIResponseArgs) => {
-  
-
   return `
       ${promptTemplate(args)}
 
-      Given the above information, create a list of requirements for this feature.
+      Given the above information, create a detailed list of requirements for this feature.
       `;
 };
 
 export const generateAcceptanceCriteriaBDD = (args: GenericAIResponseArgs) => {
-
   return `
       ${promptTemplate(args)}
 
-      Given the feature description,  create a list of all acceptance criteria scenarios using Gerkin format.
+      Given the feature description, create a list of all acceptance criteria scenarios using Gerkin format.
       `;
 };
 
 export const generateAcceptanceCriteriaRule = (args: GenericAIResponseArgs) => {
-
   return `
     ${promptTemplate(args)}
 
-
-      Given the above information,  create all acceptance criteria scenarios for this using Rule-Oriented format.
+      Given the above information, create all the possible acceptance criteria scenarios for this using Rule-Oriented format.
       `;
+};
+
+export const generateEdgeCases = (args: GenericAIResponseArgs) => {
+  return `
+      ${promptTemplate(args)}
+  
+        Given the above information, create all the possible edge cases for this feature.
+        `;
 };

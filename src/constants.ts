@@ -6,6 +6,7 @@ import {
   generateUserStories,
   generateAcceptanceCriteriaBDD,
   generateFeatureDescription,
+  generateEdgeCases,
 } from "./lib/prompts/generate-completions-prompt";
 import { TemplateType } from "./types";
 
@@ -41,5 +42,6 @@ export const mapTemplateToGeneratePrompt: Record<string, any> = {
   [TemplateType.SAD_PATH]: generateSadPathPrompt,
   [TemplateType.REQUIREMENTS]: generateRequirementPrompt,
   [TemplateType.ACCEPTANCE_CRITERIA]: generateAcceptanceCriteriaBDD,
-  [TemplateType.FEATURE_DESCRIPTION]: generateFeatureDescription
+  [TemplateType.FEATURE_DESCRIPTION]: generateFeatureDescription,
+  [TemplateType.EDGE_CASES]: generateEdgeCases,
 };

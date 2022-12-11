@@ -60,6 +60,18 @@ const Drawer: FC = () => {
                 label="Accpetance Criteria"
                 href={creatFetureDetailsRoute("acceptance-criteria")}
               />
+              <DrawerLink
+                label="Happy Path"
+                href={creatFetureDetailsRoute("happy-path")}
+              />
+              <DrawerLink
+                label="Sad Path"
+                href={creatFetureDetailsRoute("sad-path")}
+              />
+              <DrawerLink
+                label="Edge Cases"
+                href={creatFetureDetailsRoute("edge-cases")}
+              />
             </div>
           )}
         </div>
