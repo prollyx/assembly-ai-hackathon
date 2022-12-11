@@ -1,5 +1,6 @@
-import {PageLayout} from "../../components/page-layout";
-import {CreateProject} from "../../components/projects/create-new-project-page";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { PageLayout } from "../../components/page-layout";
+import { CreateProject } from "../../components/projects/create-new-project-page";
 
 export default function CreateProjectPage() {
   return (
@@ -8,3 +9,5 @@ export default function CreateProjectPage() {
     </PageLayout>
   );
 }
+
+export const getServerSideProps = withPageAuthRequired();

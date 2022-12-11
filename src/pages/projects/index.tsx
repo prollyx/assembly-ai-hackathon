@@ -1,5 +1,6 @@
-import {PageLayout} from "../../components/page-layout";
-import {ViewAllProjectsPage} from "../../components/projects/view-all-projects-page";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { PageLayout } from "../../components/page-layout";
+import { ViewAllProjectsPage } from "../../components/projects/view-all-projects-page";
 
 export default function ProjectsPage() {
   return (
@@ -8,3 +9,5 @@ export default function ProjectsPage() {
     </PageLayout>
   );
 }
+
+export const getServerSideProps = withPageAuthRequired();

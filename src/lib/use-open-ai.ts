@@ -1,13 +1,12 @@
 import { Configuration, OpenAIApi } from "openai";
-import {useOpenAI2} from "./use-open-ai-2";
-import {TemplateType} from "../types";
+import { useOpenAI2 } from "./use-open-ai-2";
+import { TemplateType } from "../types";
 
 export interface GenerateTestCasesArgs {
-    name: string;
-    description: string;
-    requirements: string;
-  }
-  
+  name: string;
+  description: string;
+  requirements: string;
+}
 
 const configuration = new Configuration({
   apiKey: process.env.NEXT_PUBLIC_OPEN_API_KEY,
@@ -15,50 +14,48 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const useOpenAI = () => {
-  const {generateResponse} = useOpenAI2()
+  const { generateResponse } = useOpenAI2();
 
   const generateTestCases = async (
     args: GenerateTestCasesArgs
   ): Promise<string> => {
-    return generateResponse(TemplateType.TEST_CASES, args)
+    return generateResponse(TemplateType.TEST_CASES, args);
   };
 
   const generateHappyPath = async (
     args: GenerateTestCasesArgs
   ): Promise<string> => {
-    return generateResponse(TemplateType.HAPPY_PATH, args)
+    return generateResponse(TemplateType.HAPPY_PATH, args);
   };
 
   const generateSadPath = async (
     args: GenerateTestCasesArgs
   ): Promise<string> => {
-    return generateResponse(TemplateType.SAD_PATH, args)
+    return generateResponse(TemplateType.SAD_PATH, args);
   };
 
   const generateRequirements = async (
     args: GenerateTestCasesArgs
   ): Promise<string> => {
-    return generateResponse(TemplateType.REQUIREMENTS, args)
+    return generateResponse(TemplateType.REQUIREMENTS, args);
   };
   const generateUserStories = async (
     args: GenerateTestCasesArgs
   ): Promise<string> => {
-    return generateResponse(TemplateType.USER_STORIES, args)
+    return generateResponse(TemplateType.USER_STORIES, args);
   };
 
   const generateFeatureDescription = async (
     args: GenerateTestCasesArgs
-    ): Promise<string> => {
-    return generateResponse(TemplateType.FEATURE_DESCRIPTION, args)
-    };
+  ): Promise<string> => {
+    return generateResponse(TemplateType.FEATURE_DESCRIPTION, args);
+  };
 
-    const generateAcceptanceCriteria = async (
-      args: GenerateTestCasesArgs
-      ): Promise<string> => {
-      return generateResponse(TemplateType.ACCEPTANCE_CRITERIA, args)
-      };
-      
-    
+  const generateAcceptanceCriteria = async (
+    args: GenerateTestCasesArgs
+  ): Promise<string> => {
+    return generateResponse(TemplateType.ACCEPTANCE_CRITERIA, args);
+  };
 
   return {
     generateTestCases,
@@ -67,7 +64,7 @@ const useOpenAI = () => {
     generateRequirements,
     generateUserStories,
     generateFeatureDescription,
-    generateAcceptanceCriteria
+    generateAcceptanceCriteria,
   };
 };
 

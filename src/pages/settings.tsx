@@ -1,3 +1,4 @@
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import React from "react";
 
 export default function settings() {
@@ -7,3 +8,5 @@ export default function settings() {
     </>
   );
 }
+
+export const getServerSideProps = withPageAuthRequired();
