@@ -1,10 +1,12 @@
-import {useUser} from "@auth0/nextjs-auth0/client";
-import {useState, useEffect} from "react";
-import {useForm, SubmitErrorHandler, FieldValues} from "react-hook-form";
-import {AutoFillGeneralFieldValues, AutoFillRequirementsFieldValues} from "../constants";
-import {TemplateType} from "../types";
-import {useTemplateConfig, TemplateConfig} from "./use-template-config";
-
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useState, useEffect } from "react";
+import { useForm, SubmitErrorHandler, FieldValues } from "react-hook-form";
+import {
+  AutoFillGeneralFieldValues,
+  AutoFillRequirementsFieldValues,
+} from "../constants";
+import { TemplateType } from "../types";
+import { useTemplateConfig, TemplateConfig } from "./use-template-config";
 
 const useTemplateForm = () => {
   const { handleSubmit, register, setValue, watch } = useForm();
@@ -62,7 +64,7 @@ const useTemplateForm = () => {
     template: TemplateType = selectedTemplate
   ) => {
     console.log("Fetch auto fill fields");
-    const autoFill: Record<TemplateType, object> = {
+    const autoFill: Record<any, object> = {
       [TemplateType.TEST_CASES]: AutoFillGeneralFieldValues,
       [TemplateType.HAPPY_PATH]: AutoFillGeneralFieldValues,
       [TemplateType.SAD_PATH]: AutoFillGeneralFieldValues,
@@ -86,7 +88,7 @@ const useTemplateForm = () => {
     templateConfig,
     setValue,
     autoFillTemplateFields,
-    watch
+    watch,
   };
 };
 

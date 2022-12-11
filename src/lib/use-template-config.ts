@@ -1,105 +1,47 @@
-import {FormFieldType, TemplateType} from "../types";
-import { useOpenAI } from "./use-open-ai";
-
+import { TemplateType } from "../types";
+import { useGenerateResponse } from "./use-generate-response";
 
 export interface TemplateConfig {
-  name: string;
-  description: string;
-  fields: FormFieldType[];
   onSubmit: (values: any) => Promise<string>;
 }
 
 export const useTemplateConfig = () => {
-  const {
-    generateTestCases,
-    generateHappyPath,
-    generateSadPath,
-    generateRequirements,
-    generateUserStories,
-    generateFeatureDescription,
-    generateAcceptanceCriteria
-  } = useOpenAI();
+  const { generateResponse, loading } = useGenerateResponse();
 
   const templateConfig: Record<TemplateType, TemplateConfig> = {
+    [TemplateType.EDGE_CASES]: {
+      onSubmit: (args) => generateResponse(TemplateType.EDGE_CASES, args),
+    },
     [TemplateType.FEATURE_DESCRIPTION]: {
-      name: "Generate Feature Description",
-      description: "Generate Feature Description",
-      fields: [
-        FormFieldType.FEAUTRE_NAME,
-        FormFieldType.DESCRIPTION,
-        FormFieldType.REQUIREMENTS,
-      ],
-      onSubmit: generateFeatureDescription,
+      onSubmit: (args) =>
+        generateResponse(TemplateType.FEATURE_DESCRIPTION, args),
     },
     [TemplateType.ACCEPTANCE_CRITERIA]: {
-        name: "Generate Acceptance Criteria",
-        description: "Generate Acceptance Criteria",
-        fields: [
-          FormFieldType.FEAUTRE_NAME,
-          FormFieldType.DESCRIPTION,
-          FormFieldType.REQUIREMENTS,
-        ],
-        onSubmit: generateAcceptanceCriteria,
-      },
+      onSubmit: (args) =>
+        generateResponse(TemplateType.ACCEPTANCE_CRITERIA, args),
+    },
     [TemplateType.REQUIREMENTS]: {
-        name: "Generate Feature Requirements",
-        description: "Generate Feature Requirements",
-        fields: [
-          FormFieldType.FEAUTRE_NAME,
-          FormFieldType.DESCRIPTION,
-          FormFieldType.REQUIREMENTS,
-        ],
-        onSubmit: generateRequirements,
-      },
+      onSubmit: (args) => generateResponse(TemplateType.REQUIREMENTS, args),
+    },
     [TemplateType.TEST_CASES]: {
-      name: "Generate Test Cases",
-      description: "Generate Test Cases",
-      fields: [
-        FormFieldType.FEAUTRE_NAME,
-        FormFieldType.DESCRIPTION,
-        FormFieldType.REQUIREMENTS,
-      ],
-      onSubmit: generateTestCases,
+      onSubmit: (args) => generateResponse(TemplateType.TEST_CASES, args),
     },
     [TemplateType.USER_STORIES]: {
-      name: "Generate User Stories",
-      description: "Generate User Stories",
-      fields: [
-        FormFieldType.FEAUTRE_NAME,
-        FormFieldType.DESCRIPTION,
-        FormFieldType.REQUIREMENTS,
-      ],
-      onSubmit: generateUserStories,
+      onSubmit: (args) => generateResponse(TemplateType.USER_STORIES, args),
     },
     [TemplateType.HAPPY_PATH]: {
-      name: "Generate Happy Path",
-      description: "Generate Happy Path",
-      fields: [
-        FormFieldType.FEAUTRE_NAME,
-        FormFieldType.DESCRIPTION,
-        FormFieldType.REQUIREMENTS,
-      ],
-      onSubmit: generateHappyPath,
+      onSubmit: (args) => generateResponse(TemplateType.HAPPY_PATH, args),
     },
     [TemplateType.SAD_PATH]: {
-      name: "Generate Sad Path",
-      description: "Generate Sad Path",
-      fields: [
-        FormFieldType.FEAUTRE_NAME,
-        FormFieldType.DESCRIPTION,
-        FormFieldType.REQUIREMENTS,
-      ],
-      onSubmit: generateSadPath,
+      onSubmit: (args) => generateResponse(TemplateType.SAD_PATH, args),
     },
     [TemplateType.REQUIREMENTS]: {
-      name: "Generate Requirements",
-      description: "Generate Requirements",
-      fields: [FormFieldType.FEAUTRE_NAME, FormFieldType.DESCRIPTION],
-      onSubmit: generateRequirements,
+      onSubmit: (args) => generateResponse(TemplateType.REQUIREMENTS, args),
     },
   };
 
   return {
     templateConfig,
+    loading,
   };
 };

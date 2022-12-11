@@ -13,13 +13,6 @@ export default async function handler(
   if (req.method === HTTPMethod.POST) {
     const data = req.body.arg;
 
-    // try {
-    //   const project = await addProject(data);
-    //   res.status(200).json(project);
-    // } catch (error: any) {
-    //   res.status(400).send(error);
-    // }
-
     await addProject({
       ...data,
       user: { connect: { email: session?.user.email } },

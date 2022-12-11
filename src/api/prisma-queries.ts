@@ -49,8 +49,6 @@ export async function getUserFromEmail(email?: string): Promise<User | null> {
   }
 }
 
-
-
 export async function addResponse(
   input: Prisma.ResponsesCreateInput
 ): Promise<Responses> {

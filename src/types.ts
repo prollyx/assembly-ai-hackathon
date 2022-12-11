@@ -29,6 +29,7 @@ export enum TemplateType {
   USER_STORIES = "USER_STORIES",
   ACCEPTANCE_CRITERIA = "ACCEPTANCE_CRITERIA",
   FEATURE_DESCRIPTION = "FEATURE_DESCRIPTION",
+  EDGE_CASES = "EDGE_CASES",
 }
 
 export enum FormFieldType {
@@ -37,4 +38,3 @@ export enum FormFieldType {
   REQUIREMENTS = "REQUIREMENTS",
   TEST_CASES = "TEST_CASES",
 }
-

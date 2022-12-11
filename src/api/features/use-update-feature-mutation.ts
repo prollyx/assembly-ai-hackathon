@@ -6,8 +6,8 @@ import {sendRequest} from '../send-request'
 const useUpdateFeatureMutation = (featureId: string,{onSuccess, onError}: RequestDefaultArgs) => {
     return useSWRMutation(`/api/feature/${featureId}`, sendRequest, {
         onSuccess: () => onSuccess?.(),
-        onError: (e) => onError?.(e)
-        
+        onError: (e) => onError?.(e),
+        throwOnError: false
     })
 }
 

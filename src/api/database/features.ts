@@ -2,9 +2,6 @@ import {
     Feature,
     Prisma,
     PrismaClient,
-    Project,
-    Responses,
-    User,
   } from "@prisma/client";
   
   const prisma = new PrismaClient();
@@ -22,17 +19,23 @@ export async function addFeature(
   }
   
   export async function updateFeature(
+    id: string,
     input: Prisma.FeatureCreateInput
   ): Promise<Feature> {
+
     try {
       const feature = await prisma.feature.update({
-        where: { id: input.id },
         data: input,
+        where: {
+          id,
+        }
       });
   
       return feature;
     } catch (e) {
-      throw new Error("feature not updated");
+      console.log(e);
+      
+      throw new Error("Something went wrong");
     }
   }
   

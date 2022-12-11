@@ -1,11 +1,11 @@
 import { Configuration, OpenAIApi } from "openai";
-import { useOpenAI2 } from "./use-open-ai-2";
+import { useGenerateResponse } from "./use-generate-response";
 import { TemplateType } from "../types";
+import { Feature, Project } from "@prisma/client";
 
-export interface GenerateTestCasesArgs {
-  name: string;
-  description: string;
-  requirements: string;
+export interface GenericAIResponseArgs {
+  feature?: Feature;
+  project?: Project;
 }
 
 const configuration = new Configuration({
@@ -14,45 +14,45 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const useOpenAI = () => {
-  const { generateResponse } = useOpenAI2();
+  const { generateResponse, loading } = useGenerateResponse();
 
   const generateTestCases = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.TEST_CASES, args);
   };
 
   const generateHappyPath = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.HAPPY_PATH, args);
   };
 
   const generateSadPath = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.SAD_PATH, args);
   };
 
   const generateRequirements = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.REQUIREMENTS, args);
   };
   const generateUserStories = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.USER_STORIES, args);
   };
 
   const generateFeatureDescription = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.FEATURE_DESCRIPTION, args);
   };
 
   const generateAcceptanceCriteria = async (
-    args: GenerateTestCasesArgs
+    args: GenericAIResponseArgs
   ): Promise<string> => {
     return generateResponse(TemplateType.ACCEPTANCE_CRITERIA, args);
   };
@@ -65,6 +65,7 @@ const useOpenAI = () => {
     generateUserStories,
     generateFeatureDescription,
     generateAcceptanceCriteria,
+    loading,
   };
 };
 
