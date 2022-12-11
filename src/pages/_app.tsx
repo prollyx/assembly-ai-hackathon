@@ -8,7 +8,7 @@ import { SessionProvider } from "../context/session.context";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NotificationProvider>
-      <UserProvider>
+      <UserProvider loginUrl="/api/auth/login">
         <SessionProvider>
           <ProjectProvider>
             <Component {...pageProps} />
